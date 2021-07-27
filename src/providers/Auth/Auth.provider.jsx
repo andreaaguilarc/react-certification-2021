@@ -23,14 +23,16 @@ function AuthProvider({ children }) {
     setAuthenticated(isAuthenticated);
   }, []);
 
-  const login = useCallback(() => {
+  const login = useCallback((user) => {
     setAuthenticated(true);
     storage.set(AUTH_STORAGE_KEY, true);
+    storage.set('Username', user);
   }, []);
 
   const logout = useCallback(() => {
     setAuthenticated(false);
     storage.set(AUTH_STORAGE_KEY, false);
+    storage.set('Username', null);
   }, []);
 
   return (
